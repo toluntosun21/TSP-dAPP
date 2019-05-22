@@ -1,0 +1,103 @@
+.instance-list {
+border: 3px solid gray;
+padding: 50px;
+padding-top: 20px;
+border-bottom-right-radius: 50px;
+border-bottom-left-radius: 50px;
+
+
+background: rgba(255,255,255,1);
+background: -moz-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(246,246,246,1)), color-stop(100%, rgba(237,237,237,1)));
+background: -webkit-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+background: -o-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+background: -ms-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=1 );
+
+}
+
+body{
+font-family: 'Open Sans', sans-serif;
+height:100vh; 
+background: rgba(76,76,76,1);
+background: -moz-linear-gradient(left, rgba(76,76,76,1) 0%, rgba(89,89,89,1) 12%, rgba(0,0,0,1) 47%, rgba(17,17,17,1) 60%, rgba(43,43,43,1) 76%, rgba(28,28,28,1) 91%, rgba(19,19,19,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(76,76,76,1)), color-stop(12%, rgba(89,89,89,1)), color-stop(47%, rgba(0,0,0,1)), color-stop(60%, rgba(17,17,17,1)), color-stop(76%, rgba(43,43,43,1)), color-stop(91%, rgba(28,28,28,1)), color-stop(100%, rgba(19,19,19,1)));
+background: -webkit-linear-gradient(left, rgba(76,76,76,1) 0%, rgba(89,89,89,1) 12%, rgba(0,0,0,1) 47%, rgba(17,17,17,1) 60%, rgba(43,43,43,1) 76%, rgba(28,28,28,1) 91%, rgba(19,19,19,1) 100%);
+background: -o-linear-gradient(left, rgba(76,76,76,1) 0%, rgba(89,89,89,1) 12%, rgba(0,0,0,1) 47%, rgba(17,17,17,1) 60%, rgba(43,43,43,1) 76%, rgba(28,28,28,1) 91%, rgba(19,19,19,1) 100%);
+background: -ms-linear-gradient(left, rgba(76,76,76,1) 0%, rgba(89,89,89,1) 12%, rgba(0,0,0,1) 47%, rgba(17,17,17,1) 60%, rgba(43,43,43,1) 76%, rgba(28,28,28,1) 91%, rgba(19,19,19,1) 100%);
+background: linear-gradient(to right, rgba(76,76,76,1) 0%, rgba(89,89,89,1) 12%, rgba(0,0,0,1) 47%, rgba(17,17,17,1) 60%, rgba(43,43,43,1) 76%, rgba(28,28,28,1) 91%, rgba(19,19,19,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#131313', GradientType=1 );
+
+
+}
+
+
+.table-row{
+cursor:pointer;
+}
+
+.my-table{
+background:white;
+}
+
+.header {
+border: 3px solid gray;
+padding: 10px;
+padding-left: 50px;
+margin-bottom:5px; 
+border-bottom-right-radius: 0px;
+border-bottom-left-radius: 0px;
+}
+
+.infinity{
+height:100vh; 
+}
+
+.side-bar{
+padding: 20px;
+padding-left:40px;
+border-bottom-right-radius: 0px;
+border-bottom-left-radius: 50px;
+}
+
+
+.adress-form{
+
+
+}
+
+.hiddenY{
+width: 0px;
+height: 0px;
+overflow: hidden;
+position:absolute;
+top:-100000px;
+}
+
+.hiddenX{
+width: 0px;
+height: 0px;
+overflow: hidden;
+position:absolute;
+top:-100000px;
+}
+
+.my-custom-scrollbar {
+position: relative;
+height: 70%;
+overflow: auto;
+}
+.table-wrapper-scroll-y {
+display: block;
+}
+
+.old-TSP{
+color:gray;
+}
+
+.closed-TSP{
+color:gray;
+}
+
+

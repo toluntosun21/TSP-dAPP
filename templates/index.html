@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>TSP dAPP</title>
+ <link href='https://fonts.googleapis.com/css?family=Open Sans:400,700' rel='stylesheet' type='text/css'>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+<link rel="import" href="{{ url_for('static', filename='solveTSP.html') }}">
+<link rel="import" href="{{ url_for('static', filename='add_instance.html') }}">
+</head>
+<body class="container">
+   <nav class="navbar navbar-expand navbar-dark bg-dark">
+      <a class="navbar-brand" href="javascript:main();">Solve TSP</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExample02">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="javascript:addTSP();">Create TSP<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="javascript:myTSP();">Created TSPs</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="javascript:mySolvedTSP();">Solved TSPs</a>
+          </li>
+
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ url_for('static', filename='solidity.soln') }}">Appendix</a>
+          </li>
+        </ul>
+        <form class="form-inline my-4 my-md-0 adress-form" style="width:40%;">
+          <input class="form-control adress-form" style="width:100%;" type="text" placeholder="address" id="search_adress">
+        </form>
+	<button class="btn btn-danger navbar-btn" style="margin-left:10px;" onclick="main_filtered()">Search</button>
+
+      </div>
+    </nav>
+  <div class="row">
+ <div class="col-lg-1 col-sm-0 col-md-0"></div>
+ <div class="col-lg-10 col-sm-12 col-md-12 instance-list header">
+<div  id="curr_ts"></div>
+<div  id="user"></div>
+<div  id="balance"></div>
+</div>
+</div>
+ <div class="row">
+
+ <div class="col-lg-1 col-sm-0 col-md-0"></div>
+
+ <div class="col-lg-10 col-sm-12 col-md-12 instance-list infinity" id="main">
+</div>
+</div>
+</body>
+<script type="text/javascript" src="{{ url_for('static', filename='js/web3.min.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
+</html>

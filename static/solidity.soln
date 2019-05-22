@@ -1,0 +1,169 @@
+pragma solidity ^0.5.8;
+
+
+contract TSP {
+  
+    uint256[] public soln;
+    address payable public owner_address;
+    uint256 public cost;
+    
+
+    uint256[] public costs;
+    uint256 public size;
+    uint256 public closing;
+    bool paid=false;
+    bool soln_inserted=false;
+    uint256 prize;
+  function isClosed() public view returns (bool){
+      return Time_call()>closing;
+  }
+  
+  function currentBest() public view returns(uint256[] memory){
+      return soln;
+  }
+  
+  function getCosts() public view returns(uint256[] memory){
+      return costs;
+  }
+  
+  function getMeta() public view returns(address,uint256,uint256,uint256,uint256,bool,address,bool){
+      return (address(this),size,cost,closing,getPrize(),isClosed(),owner_address,readyToPay());
+  }
+  
+  constructor(uint256 size_,uint256[] memory costs_,uint256 closing_) public payable{
+    require(size_*size_==costs_.length);
+    require(closing_>Time_call());
+    costs=costs_;
+    size=size_;
+    closing=closing_;
+    prize=address(this).balance;
+  }
+  
+  function getInstance()public view returns(uint256[] memory){
+      return costs;
+  }
+  
+  function getPrize() public view returns(uint256){
+      return prize;
+  }
+
+  function uploadSolution(uint256[] memory soln_,address payable solver) public{
+      if(isClosed()==true)return;
+      if(soln_.length!=size)return;
+      uint256[] memory temp=new uint256[](size);
+      for(uint256 i=0;i<size;i++)temp[i]=0;
+     
+      uint256 newcost=0;      
+      uint256 prev;
+      for(uint256 i=0;i<size;i++){
+          if(soln_[i]<0 || soln_[i]>=size)return;
+          
+          uint256 next=soln_[i];
+          temp[soln_[i]]+=1;         
+          
+          if(i!=0){
+              newcost+=costs[prev*size+next];
+          }
+          prev=next;
+      }
+      newcost+=costs[prev*size+soln_[0]];
+      
+      for(uint256 i=0;i<size;i++)if(temp[i]!=1)return;
+      
+      if(cost>newcost || soln_inserted==false){
+          owner_address=solver;
+          soln=soln_;
+          cost=newcost;
+          soln_inserted=true;
+      }
+  }
+  
+  
+  
+  function Time_call() public view returns (uint256){
+        return now;
+    }
+    
+    
+    /*
+    Called Daily
+    */
+    function check_prizes() public {
+        require(paid==false);
+        require(isClosed());
+        address payable winner_address=owner_address;
+        paid=true;
+        winner_address.transfer(address(this).balance);
+
+    }
+    
+    function readyToPay() public view returns(bool){
+        return paid==false && isClosed();
+    }
+}
+
+
+contract TSP_API{
+    TSP[] public list;
+    mapping (address=> address[]) public creators;
+    mapping (address=> address[]) public solvers;
+    mapping (address=> uint256) public reverse_map;
+    
+    function numCreatedInstance(address add) public view returns(uint256){
+        return creators[add].length;
+    }
+    
+    function createdInstances(address add)public view returns(address[] memory){
+        return creators[add];
+    }
+    
+    function solvedInstances(address add)public view returns(address[] memory){
+        return solvers[add];
+    }
+    
+
+    constructor() public payable{
+    
+    }    
+    function addTSP(uint256 size,uint256[] memory costs_,uint256 closing_) public payable {
+     TSP temp=(new TSP).value(msg.value)(size,costs_,closing_);
+     list.push(temp);
+     creators[msg.sender].push((address)(temp));
+     reverse_map[(address)(temp)]=list.length-1;
+    }
+    
+    function uploadSolution(address add,uint256[] memory soln_) public{
+        uint256 index=reverse_map[add];
+        list[index].uploadSolution(soln_,msg.sender);
+        solvers[msg.sender].push(add);
+    }
+    
+    function numInstances() public view returns(uint256){
+        return list.length;
+    }
+    
+    function Instances() public view returns(TSP[] memory){
+    /*    address[] memory returner=new address[](list.length);
+        for(uint256 i=0;i<list.length;i++){
+            returner[i]=(address)(list[i]);
+        }
+        return returner;
+      */  return list;
+    }
+    function finalize(uint256 index) public{
+        require(index<list.length);
+        if(list[index].readyToPay()){
+            list[index].check_prizes();
+        }
+    }
+    
+    function getMeta(uint256 index) public view returns(address,uint256,uint256,uint256,uint256,bool,address,bool){
+        require(index<list.length);
+        return list[index].getMeta();
+    }
+    
+    function Time_call() public view returns (uint256){
+        return now;
+    }
+
+}
