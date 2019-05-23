@@ -7,6 +7,7 @@ The guarantee of the agreement is provided by the Smart Contracts.
 
 PROJECT DEPENDS ON::
 web3.js 0.2.0
+
 soliditiy 0.5.8
 python 3.6
 flask 1.0.2
