@@ -12,7 +12,7 @@ The guarantee of the agreement is provided by the Smart Contracts.
 
 
 
-PROJECT DEPENDS ON::
+PROJECT DEPENDS ON
 
 web3.js 0.2.0
 
