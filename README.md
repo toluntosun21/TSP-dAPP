@@ -10,6 +10,8 @@ Users, typically owning strong computational power, can also send solutions to t
 The guarantee of the agreement is provided by the Smart Contracts. 
 
 
+
+
 PROJECT DEPENDS ON::
 
 web3.js 0.2.0
